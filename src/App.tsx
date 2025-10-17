@@ -70,7 +70,7 @@ function App() {
               <a href="#about" className="text-slate-300 hover:text-cyan-400 transition-all duration-300">À propos</a>
               <a href="#skills" className="text-slate-300 hover:text-cyan-400 transition-all duration-300">Compétences</a>
               <a href="#projects" className="text-slate-300 hover:text-cyan-400 transition-all duration-300">Projets</a>
-              <a href="#contact" className="text-slate-300 hover:text-cyan-400 transition-all duration-300">Contact</a>
+              <a href="#contact" className="text-slate-300 hover:text-cyan-400 transition-all duration-300">Contacts</a>
             </div>
           </nav>
 
