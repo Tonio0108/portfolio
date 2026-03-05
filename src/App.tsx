@@ -1,33 +1,25 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import Contact from "./components/Contact";
+import Experience from "./components/Experience";
+import Hero from "./components/Hero";
+import Navigation from "./components/Navigation";
+import Projects from "./components/Projects";
+import Services from "./components/Services";
+import Skills from "./components/Skills";
 
-const queryClient = new QueryClient();
 
 const App = () => {
-  // Force dark mode
-  if (typeof document !== 'undefined') {
-    document.documentElement.classList.add('dark');
-  }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <Navigation />
+      <Hero />
+      <Services />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Contact />
+
+    </>
   );
 };
 

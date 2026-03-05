@@ -32,40 +32,56 @@ const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  // Animation pour les cartes de skills
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
   const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 30 },
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
     visible: (index: number) => ({
       opacity: 1,
       scale: 1,
       y: 0,
       transition: {
-        duration: 0.4,
-        delay: index * 0.1, // effet de cascade
-        ease: "easeOut",
+        duration: 0.6,
+        delay: index * 0.1,
       },
     }),
   };
 
   return (
-    <section id="skills" className="bg-section-bg">
+    <section id="skills" className="relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--primary))/3] via-transparent to-transparent -z-10" />
+      
       <div className="section-container">
+        {/* Section Title */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-16"
+          ref={ref}
+          variants={titleVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills</h2>
-          <p className="text-lg text-muted-foreground">
-            Technologies I work with
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium">
+              My Expertise
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="gradient-text">Skills</span> & Technologies
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            A comprehensive set of modern technologies and tools for full-stack development
           </p>
         </motion.div>
 
-        <div
-          ref={ref}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-5xl mx-auto"
-        >
+        {/* Skills Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
@@ -73,18 +89,24 @@ const Skills = () => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={index}
-              className="flex flex-col items-center gap-4 p-6 bg-card rounded-lg border hover:border-primary transition-all duration-300 hover:scale-105"
+              className="group"
             >
-              <motion.img
-                src={skill.icon}
-                alt={skill.name}
-                className="w-16 h-16 object-contain"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              />
-              <span className="text-sm font-medium text-center">
-                {skill.name}
-              </span>
+              <div className="flex flex-col items-center gap-4 p-6 rounded border border-border/50 bg-card hover:bg-card/80 hover:border-primary/30 card-glow smooth-transition-slow h-full">
+                <motion.div
+                  className="p-3 rounded-lg smooth-transition"
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-12 h-12 object-contain"
+                  />
+                </motion.div>
+                <span className="text-sm font-semibold text-center text-foreground group-hover:text-primary smooth-transition">
+                  {skill.name}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

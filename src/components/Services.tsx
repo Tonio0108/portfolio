@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Code2, Smartphone, Database, Layers, Zap } from "lucide-react";
+import { Code2, Smartphone, Database, Layers, Zap, GitBranch } from "lucide-react";
 
 const services = [
   {
@@ -40,34 +40,55 @@ const Services = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  // Variants d’animation pour les cartes
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (index: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        delay: index * 0.15, // effet de cascade
-        ease: "easeOut",
+        duration: 0.8,
+        delay: index * 0.15,
       },
     }),
   };
 
   return (
-    <section id="services" className="bg-background">
+    <section id="services" className="relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(var(--primary))/3] to-transparent -z-10" />
+      
       <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Services</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive development services to bring your ideas to life
-          </p>
-        </div>
-
-        <div
+        {/* Section Title */}
+        <motion.div
           ref={ref}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-hidden"
+          variants={titleVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-20"
         >
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium">
+              What I Offer
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="gradient-text">Services</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Comprehensive development services tailored to bring your ideas to life with quality, innovation, and attention to detail
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -77,13 +98,16 @@ const Services = () => {
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 custom={index}
+                className="group"
               >
-                <Card className="p-8 border hover:border-primary transition-all duration-300 hover:shadow-lg group">
-                  <div className="mb-4 p-3 bg-primary/10 w-fit rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Icon className="text-primary" size={32} />
+                <Card className="h-full p-8 border border-border/50 hover:border-primary/30 bg-card hover:bg-card/80 smooth-transition-slow card-glow">
+                  <div className="mb-6 w-fit group-hover:scale-110 smooth-transition">
+                    <Icon className="text-primary" size={32} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary smooth-transition">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">
                     {service.description}
                   </p>
                 </Card>
