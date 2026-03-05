@@ -75,7 +75,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(var(--primary))/5] to-transparent -z-10" />
       
       <motion.div
-        className="section-container text-center"
+        className="section-container p-10 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
