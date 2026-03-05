@@ -102,7 +102,7 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden py-4 border-t border-border/50"
+            className="md:hidden py-4 border-t border-border/50 bg-black"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
