@@ -192,7 +192,7 @@ const Hero = () => {
         {/* Main Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl font-bold mb-6 gradient-text leading-tight"
+          className="text-4xl font-bold mb-6 gradient-text leading-tight"
         >
           Antonio Andriatsiaforitrarivo
         </motion.h1>
