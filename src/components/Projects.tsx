@@ -97,7 +97,7 @@ const Projects = () => {
         <Carousel opts={{ loop: true, skipSnaps: false }}>
           <CarouselContent className="p-8">
             {projects.map((project, index) => (
-              <CarouselItem key={index} className="basis-1/2">
+              <CarouselItem key={index} className="basis-1 md:basis-1/2">
                 <motion.div
                   variants={cardVariants}
                   initial="hidden"
