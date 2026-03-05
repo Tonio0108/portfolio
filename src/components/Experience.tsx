@@ -6,6 +6,14 @@ import { Briefcase } from "lucide-react";
 const experiences = [
   {
     title: "Full Stack Developer",
+    company: "Freelance",
+    period: "Jan 2025 - feb 2025",
+    description:
+      "Developed delivery management feature for a booking platform, enabling users to track orders in real-time. Implemented a secure authentication system and optimized database queries for improved performance.",
+    technologies: ["React.js", "TypeScript", "Express.js","Sequelize","PostgreSQL", "WebSocket"],
+  },
+  {
+    title: "Full Stack Developer",
     company: "Innov-T consulting Madagascar",
     period: "Aug 2025 - present",
     description:
